@@ -83,12 +83,32 @@ body {
 
 /* ===== 字体样式 ===== */
 /* 斜体：拉丁用真斜体，CJK用楷体 */
-em,
-i {
+em {
     font-style: italic;
+    font-family: "CMU Serif", serif;
+}
+
+/* CJK 覆盖 */
+em {
+    font-family: "CMU Serif", serif;
+}
+
+em {
+    font-feature-settings: "kern" 1;
+}
+
+/* Unicode script selector */
+em {
     font-family:
-        "CMU Serif", "KaiTi", "楷体", "STKaiti", "华文楷体", "Noto Serif SC",
+        "CMU Serif",
+        "KaiTi",
+        "楷体",
         serif;
+}
+
+/* 关键：禁止 CJK italic 合成 */
+em {
+    font-synthesis: none;
 }
 
 /* 粗体：用 Noto Sans */
@@ -125,7 +145,7 @@ pre {
 }
 
 /* ===== 语言特定设置 ===== */
-:lang(zh),
+/* :lang(zh),
 :lang(ja),
 :lang(ko) {
     font-family: "Noto Serif SC", "CMU Serif", serif;
@@ -145,7 +165,7 @@ pre {
         "liga" 1;
     font-kerning: normal;
     font-variant-ligatures: none;
-}
+} */
 
 /* ===== UI 元素 ===== */
 .VPNav,
@@ -170,12 +190,15 @@ pre {
 }
 
 .vp-doc p {
-    text-indent: 2em;
+    padding-left: 2em;
+}
+.vp-doc ul p,
+.vp-doc ol p {
+    padding-left: 0;
 }
 
-.custom-block.noindent {
-    text-indent: 0;
-}
-.custom-block.noindent p {
-    text-indent: 0;
+.mathjax,
+mjx-container {
+    all: unset;
+    display: inline-block;
 }

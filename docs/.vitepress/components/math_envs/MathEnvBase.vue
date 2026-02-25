@@ -52,8 +52,29 @@ const hasContent = computed(() => !!slots.default)
 
 .math-env-title {
     font-style: italic;
+    font-family: "CMU Serif", serif;
     margin-left: 0.3em;
     font-size: large;
+}
+
+.math-env-title {
+    font-family: "CMU Serif", serif;
+}
+
+.math-env-title {
+    font-feature-settings: "kern" 1;
+}
+
+.math-env-title {
+    font-family:
+        "CMU Serif",
+        "KaiTi",
+        "楷体",
+        serif;
+}
+
+.math-env-title {
+    font-synthesis: none;
 }
 
 .math-env-body {

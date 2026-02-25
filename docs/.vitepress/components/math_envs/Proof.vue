@@ -6,7 +6,7 @@ defineProps<{ title?: string }>()
 <template>
     <MathEnvBase envName="Proof" :title="title">
         <slot />
-        <div class="qed">∎</div>
+        <div class="qed">证毕</div>
     </MathEnvBase>
 </template>
 
