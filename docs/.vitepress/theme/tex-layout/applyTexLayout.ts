@@ -28,12 +28,14 @@ export async function applyTexLayout() {
 
 /* responsive */
 let timer: any;
-window.addEventListener("resize", () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-        document
-            .querySelectorAll(".VPDoc p")
-            .forEach((p) => delete (p as HTMLElement).dataset.texified);
-        applyTexLayout();
-    }, 200);
-});
+if (typeof window !== "undefined") {
+    window.addEventListener("resize", () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            document
+                .querySelectorAll(".VPDoc p")
+                .forEach((p) => delete (p as HTMLElement).dataset.texified);
+            applyTexLayout();
+        }, 200);
+    });
+}
