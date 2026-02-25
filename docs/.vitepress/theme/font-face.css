@@ -1,0 +1,66 @@
+/* CMU Serif */
+@font-face {
+    font-family: "CMU Serif";
+    src: url("./fonts/CMUSerif-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "CMU Serif";
+    src: url("./fonts/CMUSerif-Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "CMU Serif";
+    src: url("./fonts/CMUSerif-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Noto Serif SC */
+@font-face {
+    font-family: "Noto Serif SC";
+    src: url("./fonts/NotoSerifSC-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+
+/* Noto Sans */
+@font-face {
+    font-family: "Noto Sans";
+    src: url("./fonts/NotoSans-Regular.woff2") format("woff2");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url("./fonts/NotoSans-Bold.woff2") format("woff2");
+    font-weight: 700;
+}
+
+/* inline code */
+code {
+    font-family: var(--vp-font-family-mono) !important;
+}
+
+/* fenced code blocks */
+pre,
+pre code,
+.vp-code,
+.vp-code-block,
+.shiki,
+.shiki code {
+    font-family: var(--vp-font-family-mono) !important;
+    /* font-variant-ligatures: none; 防止 Sasara / Consolas 连字 */
+}
+
+code,
+pre {
+    font-feature-settings:
+        "halt" 1,
+        "kern" 0;
+    font-kerning: none;
+    text-align: left;
+}
