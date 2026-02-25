@@ -23,13 +23,14 @@
     --vp-c-danger-2: var(--vp-c-red-2);
     --vp-c-danger-3: var(--vp-c-red-3);
     --vp-c-danger-soft: var(--vp-c-red-soft);
-}
 
-/**
- * Component: Button
- * -------------------------------------------------------------------------- */
+    /* 字体定义 */
+    --vp-font-family-base: "CMU Serif", "Noto Serif SC", serif;
+    --vp-font-family-mono:
+        "Sasara Mono SC", "Noto Sans Mono CJK SC", "JetBrains Mono", Consolas,
+        Menlo, Monaco, ui-monospace, monospace;
 
-:root {
+    /* 按钮样式 */
     --vp-button-brand-border: transparent;
     --vp-button-brand-text: var(--vp-c-white);
     --vp-button-brand-bg: var(--vp-c-brand-3);
@@ -39,58 +40,26 @@
     --vp-button-brand-active-border: transparent;
     --vp-button-brand-active-text: var(--vp-c-white);
     --vp-button-brand-active-bg: var(--vp-c-brand-1);
-}
 
-/**
- * Component: Home
- * -------------------------------------------------------------------------- */
-
-:root {
+    /* Hero 区域 */
     --vp-home-hero-name-color: transparent;
     --vp-home-hero-name-background: -webkit-linear-gradient(
         120deg,
         #bd34fe 30%,
         #41d1ff
     );
-
     --vp-home-hero-image-background-image: linear-gradient(
         -45deg,
         #bd34fe 50%,
         #47caff 50%
     );
     --vp-home-hero-image-filter: blur(44px);
-}
 
-:root {
-    --vp-font-family-base: "CMU Serif", "Noto Serif SC", serif;
-    --vp-font-family-mono:
-        "Sasara Mono SC", "Noto Sans Mono CJK SC", "JetBrains Mono", Consolas,
-        Menlo, Monaco, ui-monospace, monospace;
-}
-
-/* 正文 */
-body {
-    font-family: var(--vp-font-family-base);
-}
-
-/* italic: 只 Latin 真 italic，CJK fallback 不 skew */
-em,
-i {
-    font-style: italic;
-}
-
-/* bold → 强制切换到 Noto Sans */
-strong,
-b {
-    font-weight: 700;
-    font-family: "CMU Serif", "Noto Sans", sans-serif;
-}
-
-/* UI sans */
-.VPNav,
-.VPSidebar,
-.VPFooter {
-    font-family: "Noto Sans", sans-serif;
+    /* 自定义块 */
+    --vp-custom-block-tip-border: transparent;
+    --vp-custom-block-tip-text: var(--vp-c-text-1);
+    --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
+    --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
 }
 
 @media (min-width: 640px) {
@@ -105,25 +74,57 @@ b {
     }
 }
 
-/**
- * Component: Custom Block
- * -------------------------------------------------------------------------- */
-
-:root {
-    --vp-custom-block-tip-border: transparent;
-    --vp-custom-block-tip-text: var(--vp-c-text-1);
-    --vp-custom-block-tip-bg: var(--vp-c-brand-soft);
-    --vp-custom-block-tip-code-bg: var(--vp-c-brand-soft);
+/* ===== 基础排版 ===== */
+body {
+    font-family: var(--vp-font-family-base);
+    text-align: justify;
+    font-variant-ligatures: none;
 }
 
-/**
- * Component: Algolia
- * -------------------------------------------------------------------------- */
-
-.DocSearch {
-    --docsearch-primary-color: var(--vp-c-brand-1) !important;
+/* ===== 字体样式 ===== */
+/* 斜体：拉丁用真斜体，CJK用楷体 */
+em,
+i {
+    font-style: italic;
+    font-family:
+        "CMU Serif", "KaiTi", "楷体", "STKaiti", "华文楷体", "Noto Serif SC",
+        serif;
 }
 
+/* 粗体：用 Noto Sans */
+strong,
+b {
+    font-weight: 700;
+    font-family: "CMU Serif", "Noto Sans", sans-serif;
+}
+
+/* ===== 代码区域 ===== */
+/* 行内代码 */
+code {
+    font-family: var(--vp-font-family-mono) !important;
+}
+
+/* 代码块 */
+pre,
+pre code,
+.vp-code,
+.vp-code-block,
+.shiki,
+.shiki code {
+    font-family: var(--vp-font-family-mono) !important;
+    font-variant-ligatures: none;
+}
+
+code,
+pre {
+    font-feature-settings:
+        "halt" 1,
+        "kern" 0;
+    font-kerning: none;
+    text-align: left;
+}
+
+/* ===== 语言特定设置 ===== */
 :lang(zh),
 :lang(ja),
 :lang(ko) {
@@ -133,6 +134,7 @@ b {
         "halt" 0;
     font-kerning: none;
     text-rendering: optimizeSpeed;
+    font-variant-ligatures: none;
 }
 
 :lang(en),
@@ -142,16 +144,38 @@ b {
         "kern" 1,
         "liga" 1;
     font-kerning: normal;
+    font-variant-ligatures: none;
 }
 
+/* ===== UI 元素 ===== */
+.VPNav,
+.VPSidebar,
+.VPFooter {
+    font-family: "Noto Sans", sans-serif;
+}
+
+/* ===== TeX 相关 ===== */
 .tex-line {
     font-family: var(--vp-font-family-base);
     font-size: 16px;
     line-height: 1.65;
     font-kerning: none;
     font-feature-settings: "liga" 0;
+    font-variant-ligatures: none;
 }
 
-.body {
-  text-align: justify
+/* ===== Algolia 搜索 ===== */
+.DocSearch {
+    --docsearch-primary-color: var(--vp-c-brand-1) !important;
+}
+
+.vp-doc p {
+    text-indent: 2em;
+}
+
+.custom-block.noindent {
+    text-indent: 0;
+}
+.custom-block.noindent p {
+    text-indent: 0;
 }

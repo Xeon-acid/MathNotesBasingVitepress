@@ -10,6 +10,7 @@ import Definition from "../components/math_envs/Definition.vue";
 import Theorem from "../components/math_envs/Theorem.vue";
 import Lemma from "../components/math_envs/Lemma.vue";
 import Proof from "../components/math_envs/Proof.vue";
+import Axiom from "../components/math_envs/Axiom.vue";
 
 export default {
     extends: DefaultTheme,
@@ -19,6 +20,7 @@ export default {
         app.component("Theorem", Theorem);
         app.component("Lemma", Lemma);
         app.component("Proof", Proof);
+        app.component("Axiom", Axiom);
     },
     setup() {
         const route = useRoute();

@@ -47,11 +47,13 @@ const hasContent = computed(() => !!slots.default)
 
 .math-env-name {
     text-transform: capitalize;
+    font-size: large;
 }
 
 .math-env-title {
     font-style: italic;
     margin-left: 0.3em;
+    font-size: large;
 }
 
 .math-env-body {
