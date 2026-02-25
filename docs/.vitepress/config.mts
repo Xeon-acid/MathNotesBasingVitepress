@@ -11,6 +11,7 @@ export default defineConfig({
     title: "Perxenic Acid 的数学笔记",
     base: "/MathNotesBasingVitepress/",
     description: "Perxenic Acid 的数学笔记",
+    ignoreDeadLinks: true,
     themeConfig: {
         nav,
         sidebar,
