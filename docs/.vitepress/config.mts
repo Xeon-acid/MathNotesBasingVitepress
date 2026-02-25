@@ -8,6 +8,7 @@ import markdownItContainer from 'markdown-it-container';
 
 export default defineConfig({
     title: "Perxenic Acid 的数学笔记",
+    base: "/MathNotesBasingVitepress/",
     description: "Perxenic Acid 的数学笔记",
     themeConfig: {
         nav,
