@@ -1,41 +1,54 @@
-import { renderTexParagraph } from "./texLayout";
+import { buildTokens } from "./tokenize";
+import { texLineBreak } from "./linebreak";
+import { renderLines } from "./render";
 
-/* wait for fonts to load */
-async function waitFonts() {
-    if (document.fonts && document.fonts.ready) {
+async function waitForLayoutReady() {
+    if (document.fonts?.ready) {
         await document.fonts.ready;
     }
+    if (window.MathJax?.typesetPromise) {
+        await window.MathJax.typesetPromise();
+    }
+    await new Promise(requestAnimationFrame);
+}
+
+function getContentWidth(el: HTMLElement): number {
+    const style = getComputedStyle(el);
+    const rect = el.getBoundingClientRect();
+    const paddingLeft = parseFloat(style.paddingLeft) || 0;
+    const paddingRight = parseFloat(style.paddingRight) || 0;
+    const borderLeft = parseFloat(style.borderLeftWidth) || 0;
+    const borderRight = parseFloat(style.borderRightWidth) || 0;
+    return rect.width - paddingLeft - paddingRight - borderLeft - borderRight;
 }
 
 export async function applyTexLayout() {
-    await waitFonts();
 
-    const paragraphs = document.querySelectorAll(".VPDoc p");
+    await waitForLayoutReady();
 
-    paragraphs.forEach((p) => {
+    const paragraphs = document.querySelectorAll(".VPDoc .vp-doc p");
+
+    for (const p of paragraphs) {
+
         const el = p as HTMLElement;
-        if (el.dataset.texified) return;
+
+        if (el.dataset.texified) continue;
+        if (el.querySelector("mjx-container")) {
+            // 允许包含数学，但不允许只含数学
+        }
+
+        const width = getContentWidth(el);
+        if (width <= 0) continue;
+
+        const font = getComputedStyle(el).font;
+
+        const tokens = buildTokens(el, font);
+        if (tokens.length < 20) continue;
+
+        const lines = texLineBreak(tokens, width);
+
+        renderLines(el, lines, width);
+
         el.dataset.texified = "true";
-
-        const text = el.textContent || "";
-        if (text.length < 80) return; // avoid tiny paragraphs
-
-        const width = el.clientWidth || 600;
-
-        renderTexParagraph(el, text, "16px CMU Serif, Noto Serif SC", width);
-    });
-}
-
-/* responsive */
-let timer: any;
-if (typeof window !== "undefined") {
-    window.addEventListener("resize", () => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            document
-                .querySelectorAll(".VPDoc p")
-                .forEach((p) => delete (p as HTMLElement).dataset.texified);
-            applyTexLayout();
-        }, 200);
-    });
+    }
 }

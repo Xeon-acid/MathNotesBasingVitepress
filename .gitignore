@@ -2,3 +2,5 @@ node_modules
 cache
 .bun-cache
 .bun-cache/*
+dist
+dist/*

@@ -5,7 +5,7 @@ import { sidebar } from "./configs/sidebar.mts";
 import { tabsMarkdownPlugin } from "vitepress-plugin-tabs";
 import { mathEnvPlugin } from "./plugins/math-envs";
 import markdownItContainer from "markdown-it-container";
-import { headingNumberingPlugin } from "./plugins/heading-numbering";
+// import { headingNumberingPlugin } from "./plugins/heading-numbering";
 
 export default defineConfig({
     title: "Perxenic Acid 的数学笔记",
@@ -24,6 +24,7 @@ export default defineConfig({
     },
 
     markdown: {
+        math: true,
         config: (md) => {
             md.use(tabsMarkdownPlugin);
             md.use(markdownItContainer, "definition");
@@ -33,9 +34,8 @@ export default defineConfig({
             md.use(markdownItContainer, "axiom");
 
             md.use(mathEnvPlugin); // transform container → Vue
-            md.use(headingNumberingPlugin); // modify headings
+            // md.use(headingNumberingPlugin); // modify headings
         },
-        math: true,
         lineNumbers: true,
     },
 });

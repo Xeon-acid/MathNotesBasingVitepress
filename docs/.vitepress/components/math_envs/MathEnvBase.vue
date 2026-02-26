@@ -1,6 +1,12 @@
 <!-- docs/.vitepress/components/math_envs/MathEnvBase.vue -->
 <script setup lang="ts">
-import { computed, useSlots } from "vue"
+import { computed, useSlots, onMounted } from "vue"
+
+onMounted(()=>{
+    if (window.MathJax?.typesetPromise) {
+        window.MathJax.typesetPromise();
+    }
+});
 
 const props = defineProps<{
     title?: string

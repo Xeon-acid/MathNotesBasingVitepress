@@ -1,6 +1,6 @@
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
-import { applyTexLayout } from "./tex-layout/applyTexLayout";
+// import { applyTexLayout } from "./tex-layout/applyTexLayout";
 import { onMounted, watch } from "vue";
 import { useRoute } from "vitepress";
 import "./style.css";
@@ -26,13 +26,13 @@ export default {
         const route = useRoute();
 
         onMounted(() => {
-            applyTexLayout();
+            // applyTexLayout();
         });
 
         watch(
             () => route.path,
             () => {
-                requestAnimationFrame(() => applyTexLayout());
+                // requestAnimationFrame(() => applyTexLayout());
             },
         );
     },

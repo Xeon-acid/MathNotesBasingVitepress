@@ -144,28 +144,7 @@ pre {
     text-align: left;
 }
 
-/* ===== 语言特定设置 ===== */
-/* :lang(zh),
-:lang(ja),
-:lang(ko) {
-    font-family: "Noto Serif SC", "CMU Serif", serif;
-    font-feature-settings:
-        "kern" 0,
-        "halt" 0;
-    font-kerning: none;
-    text-rendering: optimizeSpeed;
-    font-variant-ligatures: none;
-}
 
-:lang(en),
-:lang(fr),
-:lang(de) {
-    font-feature-settings:
-        "kern" 1,
-        "liga" 1;
-    font-kerning: normal;
-    font-variant-ligatures: none;
-} */
 
 /* ===== UI 元素 ===== */
 .VPNav,
@@ -189,16 +168,18 @@ pre {
     --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
-.vp-doc p {
-    padding-left: 2em;
+p {
+    text-indent: 2em;
 }
+
+/* .vp-doc p::before {
+    content: "";
+    display: inline-block;
+    width: 2em;
+} */
+
 .vp-doc ul p,
 .vp-doc ol p {
     padding-left: 0;
 }
 
-.mathjax,
-mjx-container {
-    all: unset;
-    display: inline-block;
-}
